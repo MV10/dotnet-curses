@@ -1,9 +1,9 @@
 ﻿namespace Mindmagma.Curses
 {
-    public enum CursesCursorState : int
+    public static class CursesCursorState
     {
-        INVISIBLE = 0,
-        NORMAL,
-        VERY_VISIBLE
+        public const int INVISIBLE = 0;
+        public const int NORMAL = 1;
+        public const int VERY_VISIBLE = 2;
     }
 }

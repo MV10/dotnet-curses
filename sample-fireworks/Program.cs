@@ -14,14 +14,14 @@ namespace sample_fireworks
         private static readonly Random rng = new Random();
 
         private static readonly short[] color_table = {
-            (short)CursesColor.RED,
-            (short)CursesColor.BLUE,
-            (short)CursesColor.GREEN,
-            (short)CursesColor.CYAN,
-            (short)CursesColor.RED,
-            (short)CursesColor.MAGENTA,
-            (short)CursesColor.YELLOW,
-            (short)CursesColor.WHITE
+            CursesColor.RED,
+            CursesColor.BLUE,
+            CursesColor.GREEN,
+            CursesColor.CYAN,
+            CursesColor.RED,
+            CursesColor.MAGENTA,
+            CursesColor.YELLOW,
+            CursesColor.WHITE
         };
 
         static void Main(string[] args)
@@ -46,7 +46,7 @@ namespace sample_fireworks
             {
                 NCurses.StartColor();
                 for (short i = 1; i < 8; i++)
-                    NCurses.InitPair(i, color_table[i], (short)CursesColor.BLACK);
+                    NCurses.InitPair(i, color_table[i], CursesColor.BLACK);
             }
 
             int flag = 0;
@@ -151,7 +151,7 @@ namespace sample_fireworks
 
         private static void GetColor()
         {
-            uint bold = (rng.Next(2) > 0) ? (uint)CursesAttribute.BOLD : (uint)CursesAttribute.NORMAL;
+            uint bold = (rng.Next(2) > 0) ? CursesAttribute.BOLD : CursesAttribute.NORMAL;
             NCurses.AttributeSet(NCurses.ColorPair((short)rng.Next(8)) | bold);
         }
 

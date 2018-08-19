@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Mindmagma.Curses
+namespace Mindmagma.Curses.Interop
 {
     // .NET's DllImport attribute only supports function references.
     // Accessing exported data (constants or variables) requires jumping
@@ -64,9 +64,9 @@ namespace Mindmagma.Curses
         internal static int GetInt(string library, string symbolName)
         {
             IntPtr dll = GetModuleHandle(library);
-            NativeExceptionHelper.ThrowOnNullPointer(dll, "NativeData.GetValue");
+            NativeExceptionHelper.ThrowOnFailure(dll, "NativeData.GetValue");
             IntPtr address = GetProcAddress(dll, symbolName);
-            NativeExceptionHelper.ThrowOnNullPointer(address, "NativeData.GetValue");
+            NativeExceptionHelper.ThrowOnFailure(address, "NativeData.GetValue");
             return (int)Marshal.PtrToStructure(address, typeof(int));
         }
 

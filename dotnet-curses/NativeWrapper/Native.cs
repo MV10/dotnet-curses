@@ -4,8 +4,10 @@ using System.Text;
 
 #pragma warning disable IDE1006 // naming rule violation, methods must begin with uppercase
 
-namespace Mindmagma.Curses
+namespace Mindmagma.Curses.Interop
 {
+    // http://invisible-island.net/ncurses/man/ncurses.3x.html#h3-Routine-Name-Index
+
     public static class Native
     {
         // Non-versioned file extensions (.dll, .so, .dylib) are optional,

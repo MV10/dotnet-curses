@@ -13,14 +13,14 @@ namespace Mindmagma.Curses
         internal NativeExceptionHelper(string message, Exception inner) : base (message, inner)
         { }
 
-        internal static void ThrowOnError(int result, string nativeFunction)
+        internal static void ThrowOnFailure(int result, string method)
         {
-            if (result == -1) throw new DotnetCursesException($"{nativeFunction}() returned ERR");
+            if (result == -1) throw new DotnetCursesException($"{method}() returned ERR");
         }
 
-        internal static void ThrowOnNullPointer(IntPtr result, string nativeFunction)
+        internal static void ThrowOnFailure(IntPtr result, string method)
         {
-            if (result == IntPtr.Zero) throw new DotnetCursesException($"{nativeFunction}() returned NULL");
+            if (result == IntPtr.Zero) throw new DotnetCursesException($"{method}() returned NULL");
         }
 
     }

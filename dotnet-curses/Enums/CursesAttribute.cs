@@ -1,24 +1,21 @@
 ﻿namespace Mindmagma.Curses
 {
-    public enum CursesAttribute : uint
+    public static class CursesAttribute
     {
-        NORMAL = 0,
-        BOLD = 2097152,
-        UNDERLINE = 131072,
-        ATTRIBUTES = 4294967040,
-        CHAR_TEXT = 255,
-        REVERSE = 262144,
-        BLINK = 524288,
-        DIM = 1048576,
-        ALT_CHARSET = 4194304,
-        INVIS = 8388608,
-        PROTECT = 16777216,
-        HORIZONTAL = 33554432,
-        LEFT = 67108864,
-        LOW = 134217728,
-        RIGHT = 268435456,
-        TOP = 536870912,
-        VERTICAL = 1073741824,
-        ITALIC = 2147483648
+        public const uint NORMAL = 0x00000000U;
+        public const uint ALTCHARSET = 0x00400000U;
+        public const uint BLINK = 0x00080000U;
+        public const uint BOLD = 0x00200000U;
+        public const uint DIM = 0x00100000U;
+        public const uint INVIS = 0x00800000U;
+        public const uint PROTECT = 0x01000000U;
+        public const uint REVERSE = 0x00040000U;
+        public const uint STANDOUT = 0x00010000U;
+        public const uint UNDERLINE = 0x00020000U;
+
+        // masks
+        public const uint ATTRIBUTES = 0xffffff00U;
+        public const uint CHARTEXT = 0x000000ffU;
+        public const uint COLOR = 0x0000ff00U;
     }
 }
