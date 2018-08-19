@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet-curses", "dotnet-curses\dotnet-curses.csproj", "{E55049C5-B02B-406D-BF19-6A7BC4E17F0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sample-fireworks", "sample-fireworks\sample-fireworks.csproj", "{0D898BD9-91CF-45C9-ACE7-B42F062094F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E55049C5-B02B-406D-BF19-6A7BC4E17F0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E55049C5-B02B-406D-BF19-6A7BC4E17F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E55049C5-B02B-406D-BF19-6A7BC4E17F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E55049C5-B02B-406D-BF19-6A7BC4E17F0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D898BD9-91CF-45C9-ACE7-B42F062094F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D898BD9-91CF-45C9-ACE7-B42F062094F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D898BD9-91CF-45C9-ACE7-B42F062094F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D898BD9-91CF-45C9-ACE7-B42F062094F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {874C901C-9047-49AA-8735-CC274CACA279}
+	EndGlobalSection
+EndGlobal
