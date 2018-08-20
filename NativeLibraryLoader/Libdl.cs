@@ -6,6 +6,7 @@ namespace NativeLibraryLoader
     internal static class Libdl
     {
         // originally just "libdl"
+        // https://github.com/mellinoe/nativelibraryloader/issues/2
         private const string LibName = "libdl.so.2";
 
         public const int RTLD_NOW = 0x002;
