@@ -67,10 +67,7 @@ namespace Mindmagma.Curses
             return Native.can_change_color();
         }
 
-        public static int Columns()
-        {
-            return Native.COLS();
-        }
+        public static int Columns => Native.COLS;
 
         public static void Clear()
         {
@@ -270,10 +267,7 @@ namespace Mindmagma.Curses
             NativeExceptionHelper.ThrowOnFailure(result, nameof(Keypad));
         }
 
-        public static int Lines()
-        {
-            return Native.LINES();
-        }
+        public static int Lines => Native.LINES;
 
         public static long MouseMask(long newMask, out long oldMask)
         {
@@ -420,9 +414,9 @@ namespace Mindmagma.Curses
             NativeExceptionHelper.ThrowOnFailure(result, nameof(ScrollOk));
         }
 
-        public static int SetCursor(CursesCursorState cursorState)
+        public static int SetCursor(int cursorState)
         {
-            int result = Native.curs_set((int)cursorState);
+            int result = Native.curs_set(cursorState);
             NativeExceptionHelper.ThrowOnFailure(result, nameof(SetCursor));
             return result;
         }

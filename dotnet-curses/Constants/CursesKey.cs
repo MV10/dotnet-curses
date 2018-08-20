@@ -101,7 +101,7 @@
 
         public static int KEY_F(int n)
         {
-            return Keys.F0 + n;
+            return F0 + n;
         }
 
         public const int MIN = 0x101;

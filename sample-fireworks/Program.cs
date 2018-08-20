@@ -55,18 +55,18 @@ namespace sample_fireworks
                 int start, end, row, diff, direction;
                 do
                 {
-                    start = rng.Next(NCurses.Columns() - 3);
-                    end = rng.Next(NCurses.Columns() - 3);
+                    start = rng.Next(NCurses.Columns - 3);
+                    end = rng.Next(NCurses.Columns - 3);
                     start = (start < 2) ? 2 : start;
                     end = (end < 2) ? 2 : end;
                     direction = (start > end) ? -1 : 1;
                     diff = Math.Abs(start - end);
-                } while (diff < 2 || diff >= NCurses.Lines() - 2);
+                } while (diff < 2 || diff >= NCurses.Lines - 2);
 
                 NCurses.AttributeSet(CursesAttribute.NORMAL);
                 for (row = 1; row < diff; ++row)
                 {
-                    NCurses.MoveAddString(NCurses.Lines() - row, row * direction + start, (direction < 0) ? "\\" : "/");
+                    NCurses.MoveAddString(NCurses.Lines - row, row * direction + start, (direction < 0) ? "\\" : "/");
                     if (flag++ > 0)
                     {
                         MyRefresh();
@@ -81,7 +81,7 @@ namespace sample_fireworks
                     flag = 0;
                 }
 
-                Explode(NCurses.Lines() - row, diff * direction + start);
+                Explode(NCurses.Lines - row, diff * direction + start);
                 NCurses.Erase();
                 MyRefresh();
             }
@@ -138,14 +138,14 @@ namespace sample_fireworks
 
         private static void AddStr(int y, int x, string str)
         {
-            if (x >= 0 && x < NCurses.Columns() && y >= 0 && y < NCurses.Lines())
+            if (x >= 0 && x < NCurses.Columns && y >= 0 && y < NCurses.Lines)
                 NCurses.MoveAddString(y, x, str);
         }
 
         private static void MyRefresh()
         {
             NCurses.Nap(FRAMERATE);
-            NCurses.Move(NCurses.Lines() - 1, NCurses.Columns() - 1);
+            NCurses.Move(NCurses.Lines - 1, NCurses.Columns - 1);
             NCurses.Refresh();
         }
 
