@@ -1,70 +1,37 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Text;
-using NativeLibraryLoader;
 
 #pragma warning disable IDE1006 // naming rule violation, methods must begin with uppercase
 
 // ncurses export list
 // http://invisible-island.net/ncurses/man/ncurses.3x.html#h3-Routine-Name-Index
 
-// depends upon this project until .NET adds this capability
+// depends upon a modified version of this project until .NET adds this capability
 // https://github.com/mellinoe/nativelibraryloader
 // https://github.com/dotnet/corefx/issues/17135
-
-
 
 namespace Mindmagma.Curses.Interop
 {
     internal static class Native
     {
-        private static readonly NativeLibrary sym_ncurses = LoadLibrary();
-        private static NativeLibrary LoadLibrary()
-        {
-            string[] names;
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                names = new[] { "libncursesw6.dll" };
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                names = new[]
-                {
-                    "libncurses.so.5.9",
-                    "libncurses.so"
-                };
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                names = new[]
-                {
-                    "libncurses",
-                    "libncurses.dylib"
-                };
-            }
-            else
-            {
-                throw new Exception("Unsupported OSPlatform, can't locate ncurses library.");
-            }
-
-            NativeLibrary lib = new NativeLibrary(names);
-            return lib;
-        }
-
         private static T LoadFunction<T>(string methodName)
         {
-            return sym_ncurses.LoadFunction<T>(methodName);
+            return NCursesLibraryHandle.lib.LoadFunction<T>(methodName);
         }
 
         private static int GetInt(string exportedSymbolName)
         {
-            IntPtr address = sym_ncurses.LoadFunction(exportedSymbolName);
+            IntPtr address = NCursesLibraryHandle.lib.LoadFunction(exportedSymbolName);
             return (int)Marshal.PtrToStructure(address, typeof(int));
         }
 
-        // Exported data
+        // Exported read-only data
+
         internal static int COLS => GetInt("COLS");
         internal static int LINES => GetInt("LINES");
+
+        // Exported methods
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int type_addch(int ch);
