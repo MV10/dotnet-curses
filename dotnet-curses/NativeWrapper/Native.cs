@@ -38,7 +38,8 @@ namespace Mindmagma.Curses.Interop
             {
                 names = new[]
                 {
-                    "ncurses.dylib"
+                    "libncurses",
+                    "libncurses.dylib"
                 };
             }
             else

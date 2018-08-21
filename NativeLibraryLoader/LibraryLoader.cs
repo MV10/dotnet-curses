@@ -171,9 +171,13 @@ namespace NativeLibraryLoader
             {
                 return new Win32LibraryLoader();
             }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
-                return new UnixLibraryLoader();
+                return new LinuxLibraryLoader();
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                return new OsxLibraryLoader();
             }
 
             throw new PlatformNotSupportedException("This platform cannot load native libraries.");
@@ -197,21 +201,39 @@ namespace NativeLibraryLoader
             }
         }
 
-        private class UnixLibraryLoader : LibraryLoader
+        private class LinuxLibraryLoader : LibraryLoader
         {
             protected override void CoreFreeNativeLibrary(IntPtr handle)
             {
-                Libdl.dlclose(handle);
+                libdl_linux.dlclose(handle);
             }
 
             protected override IntPtr CoreLoadFunctionPointer(IntPtr handle, string functionName)
             {
-                return Libdl.dlsym(handle, functionName);
+                return libdl_linux.dlsym(handle, functionName);
             }
 
             protected override IntPtr CoreLoadNativeLibrary(string name)
             {
-                return Libdl.dlopen(name, Libdl.RTLD_NOW);
+                return libdl_linux.dlopen(name, libdl_linux.RTLD_NOW);
+            }
+        }
+
+        private class OsxLibraryLoader : LibraryLoader
+        {
+            protected override void CoreFreeNativeLibrary(IntPtr handle)
+            {
+                libdl_osx.dlclose(handle);
+            }
+
+            protected override IntPtr CoreLoadFunctionPointer(IntPtr handle, string functionName)
+            {
+                return libdl_osx.dlsym(handle, functionName);
+            }
+
+            protected override IntPtr CoreLoadNativeLibrary(string name)
+            {
+                return libdl_osx.dlopen(name, libdl_linux.RTLD_NOW);
             }
         }
     }

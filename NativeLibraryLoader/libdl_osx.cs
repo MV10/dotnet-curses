@@ -3,11 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace NativeLibraryLoader
 {
-    internal static class Libdl
+    class libdl_osx
     {
-        // originally just "libdl"
-        // https://github.com/mellinoe/nativelibraryloader/issues/2
-        private const string LibName = "libdl.so.2";
+        private const string LibName = "libdl";
 
         public const int RTLD_NOW = 0x002;
 
