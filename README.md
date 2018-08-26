@@ -37,18 +37,20 @@ For Windows, download it from Thomas Dickey’s site (the current ncurses mainta
 ## Non-Standard Library Filenames
 Various platforms, releases and distributions have used different filenames for the curses library. On OSX it usually includes the major version number, and on Linux it's common to include the major and minor version numbers. Windows has never included a cursors implementation, although Thomas Dickey's builds are the de facto standard.
 
-The _dotnet-curses_ library contains a list of defaults for each platform that are very likely to work. However, if you want to add to these or even replace one or more lists entirely, simply add a class to your project that derives from `CursesLibraryNames` and override one or more of the following:
+The _dotnet-curses_ library contains a list of defaults for each platform that are very likely to work. However, if you want to add to these or even replace one or more lists entirely, simply add a class to your project that derives from `CursesLibraryNames` and use one or more of the following:
 
-- `bool ReplaceWindowsDefaults`
-- `bool ReplaceLinuxDefaults`
-- `bool ReplaceOSXDefaults`
-- `List<string> NamesWindows`
-- `List<string> NamesLinux`
-- `List<string> NamesOSX`
+```csharp
+public override bool ReplaceWindowsDefaults => true;
+public override bool ReplaceLinuxDefaults => true;
+public override bool ReplaceOSXDefaults => true;
+public override List<string> NamesWindows => new List<string> { "abc.dll", "xyz.dll" };
+public override List<string> NamesLinux => new List<string> { "abc.1.5.so", "abc.so" };
+public override List<string> NamesOSX => new List<string> { "xyz5.dylib", "xyz.dylib" };
+```
 
-The "Replace" properties are false by default. That means if you override the corresponding name list, those names will be added to the _dotnet-curses_ default list. If you set a "Replace" property to true, the built-in defaults will be ignored, and only the names you provide will be used.
+The "Replace" properties are false by default. If you leave it at the default but override the corresponding name list, those names will be **added** to the _dotnet-curses_ default list. However, if you override and set a "Replace" property to true, the built-in defaults will be ignored, and only the names you provide will be used.
 
-Currently the default lists are:
+Currently the names built into _dotnet-curses_ are as follows and should work for most target environments:
 
 - Windows: `libncursesw6.dll`
 - Linux: `libncurses.so.5.9`, `libncurses.so`
