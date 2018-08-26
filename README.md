@@ -25,20 +25,14 @@ NCurses.NoEcho();
 ```
 
 ## The .NET Runtime
-The target OS doesn't need to install the developer-oriented .NET SDK. Instead, a much smaller, machine-wide .NET runtime can be installed.
-
-For Windows, there is a simple installer [here](https://www.microsoft.com/net/download?initial-os=windows).
-
-The same is true of OSX, download an installer [here](https://www.microsoft.com/net/download?initial-os=macos).
+The target OS doesn't need to install the developer-oriented .NET SDK. Instead, a much smaller, machine-wide .NET runtime can be installed. For Windows, there is a simple installer [here](https://www.microsoft.com/net/download?initial-os=windows). The same is true of OSX, download an installer [here](https://www.microsoft.com/net/download?initial-os=macos).
 
 As usual, Linux makes it complicated. Your best bet is to read the documentation about preprequisites [here](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x) and follow the instructions that match your distro. Because distros can vary considerably even between minor releases, you should try to match your _exact_ distro and version for the best chances of success.
 
 ## The Native Library
 OSX always installs ncurses. Linux distros _almost_ always do (if yours does not, unfortunately I probably can't help you).
 
-For Windows, download it from Thomas Dickey’s site (the current ncurses maintainer) from the 64-bit link under tje "MinGW Ports" heading, and extract the DLLs anywhere in your `%PATH%`:
-
-https://invisible-island.net/ncurses/#download_mingw
+For Windows, download it from Thomas Dickey’s site (the current ncurses maintainer) from the 64-bit link under the "MinGW Ports" heading on [this page](https://invisible-island.net/ncurses/#download_mingw), and extract the DLLs anywhere in your `%PATH%`.
 
 ## Non-Standard Library Filenames
 Various platforms, releases and distributions have used different filenames for the curses library. On OSX it usually includes the major version number, and on Linux it's common to include the major and minor version numbers. Windows has never included a cursors implementation, although Thomas Dickey's builds are the de facto standard.
@@ -61,4 +55,4 @@ Currently the default lists are:
 - OSX: `libncurses.dylib`
 
 ## Native Library Loader
-This project includes a separate slightly-modified copy of Eric Mellinoe's [NativeLibraryLoader](https://github.com/mellinoe/nativelibraryloader/) project. The project is serving as a prototype for implementing improved native library support directly in a future version of .NET Core (probably 2.2).
+This project includes a separate slightly-modified copy of Eric Mellinoe's [_NativeLibraryLoader_](https://github.com/mellinoe/nativelibraryloader/) project. The project is serving as a prototype for implementing improved native library support directly in a future version of .NET Core (probably 2.2).
