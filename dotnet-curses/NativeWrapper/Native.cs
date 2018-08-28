@@ -4,6 +4,8 @@ using System.Text;
 
 #pragma warning disable IDE1006 // naming rule violation, methods must begin with uppercase
 
+// common functions and internal support functions
+
 // ncurses export list
 // http://invisible-island.net/ncurses/man/ncurses.3x.html#h3-Routine-Name-Index
 
@@ -13,7 +15,7 @@ using System.Text;
 
 namespace Mindmagma.Curses.Interop
 {
-    internal static class Native
+    internal static partial class Native
     {
         private static T LoadFunction<T>(string methodName)
         {
@@ -25,13 +27,6 @@ namespace Mindmagma.Curses.Interop
             IntPtr address = NCursesLibraryHandle.lib.LoadFunction(exportedSymbolName);
             return (int)Marshal.PtrToStructure(address, typeof(int));
         }
-
-        // Exported read-only data
-
-        internal static int COLS => GetInt("COLS");
-        internal static int LINES => GetInt("LINES");
-
-        // Exported methods
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int type_addch(int ch);
@@ -77,11 +72,6 @@ namespace Mindmagma.Curses.Interop
         private delegate int type_box(IntPtr window, char verticalChar, char horizontalChar);
         private static type_box sym_box = LoadFunction <type_box>("box");
         internal static int box(IntPtr window, char verticalChar, char horizontalChar) => sym_box(window, verticalChar, horizontalChar);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate bool type_can_change_color();
-        private static type_can_change_color sym_can_change_color = LoadFunction <type_can_change_color>("can_change_color");
-        internal static bool can_change_color() => sym_can_change_color();
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int type_clear();
@@ -210,11 +200,6 @@ namespace Mindmagma.Curses.Interop
         internal static int getstr(StringBuilder message) => sym_getstr(message);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate bool type_has_colors();
-        private static type_has_colors sym_has_colors = LoadFunction <type_has_colors>("has_colors");
-        internal static bool has_colors() => sym_has_colors();
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int type_init_color(short color, short red, short green, short blue);
         private static type_init_color sym_init_color = LoadFunction <type_init_color>("init_color");
         internal static int init_color(short color, short red, short green, short blue) => sym_init_color(color, red, green, blue);
@@ -250,9 +235,9 @@ namespace Mindmagma.Curses.Interop
         internal static int keypad(IntPtr window, bool enable) => sym_keypad(window, enable);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate long type_mousemask(long newMask, out long oldmask);
+        private delegate uint type_mousemask(uint newMask, out uint oldmask);
         private static type_mousemask sym_mousemask = LoadFunction <type_mousemask>("mousemask");
-        internal static long mousemask(long newMask, out long oldmask) => sym_mousemask(newMask, out oldmask);
+        internal static uint mousemask(uint newMask, out uint oldmask) => sym_mousemask(newMask, out oldmask);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int type_move(int y, int x);

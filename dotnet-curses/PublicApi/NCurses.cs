@@ -2,9 +2,11 @@
 using System.Text;
 using Mindmagma.Curses.Interop;
 
+// all common functions
+
 namespace Mindmagma.Curses
 {
-    public class NCurses
+    public static partial class NCurses
     {
         public static int AddChar(int ch)
         {
@@ -61,13 +63,6 @@ namespace Mindmagma.Curses
             int result = Native.box(window, verticalChar, horizontalChar);
             NativeExceptionHelper.ThrowOnFailure(result, nameof(Box));
         }
-
-        public static bool CanChangeColor()
-        {
-            return Native.can_change_color();
-        }
-
-        public static int Columns => Native.COLS;
 
         public static void Clear()
         {
@@ -219,11 +214,6 @@ namespace Mindmagma.Curses
             NativeExceptionHelper.ThrowOnFailure(x, nameof(GetYX));
         }
 
-        public static bool HasColors()
-        {
-            return Native.has_colors();
-        }
-
         public static void InitColor(short color, short red, short green, short blue)
         {
             int result = Native.init_color(color, red, green, blue);
@@ -267,9 +257,7 @@ namespace Mindmagma.Curses
             NativeExceptionHelper.ThrowOnFailure(result, nameof(Keypad));
         }
 
-        public static int Lines => Native.LINES;
-
-        public static long MouseMask(long newMask, out long oldMask)
+        public static uint MouseMask(uint newMask, out uint oldMask)
         {
             return Native.mousemask(newMask, out oldMask);
         }
