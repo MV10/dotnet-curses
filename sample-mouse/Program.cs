@@ -11,8 +11,6 @@ namespace sample_mouse
 
         static void Main(string[] args)
         {
-            NCurses.Trace(CursesTrace.DATABASE);
-
             Screen = NCurses.InitScreen();
             try
             {
@@ -35,9 +33,7 @@ namespace sample_mouse
             // some terminals require this to differentiate mouse "keys" from random keyboard input
             NCurses.Keypad(Screen, true);
 
-            // terminfo for color and mouse
-            // https://stackoverflow.com/questions/29020638/which-term-to-use-to-have-both-256-colors-and-mouse-move-events-in-python-curse
-
+            // not reporting mouse movement?
             // https://stackoverflow.com/questions/52047158/report-mouse-position-for-ncurses-on-windows/52053196
             // https://stackoverflow.com/questions/7462850/mouse-movement-events-in-ncurses
 
@@ -68,6 +64,7 @@ namespace sample_mouse
                         break;
 
                     case -1:
+                        // no input received
                         break;
 
                     default:

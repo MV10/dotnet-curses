@@ -14,7 +14,7 @@ namespace Mindmagma.Curses
         public static int Columns => Native.COLS;
 
         /// <summary>
-        /// The number of rows Visible. Maximum Y position is one less (zero offset).
+        /// The number of rows visible. Maximum Y position is one less (zero offset).
         /// </summary>
         public static int Lines => Native.LINES;
     }

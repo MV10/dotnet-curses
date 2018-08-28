@@ -1,9 +1,9 @@
 ﻿namespace Mindmagma.Curses
 {
-    public enum CursesSoftKeyLabelPosition : int
+    public static class CursesSoftKeyLabelPosition
     {
-        LEFT,
-        CENTER,
-        RIGHT
+        public static int LEFT = 0;
+        public static int CENTER = 1;
+        public static int RIGHT = 2;
     }
 }

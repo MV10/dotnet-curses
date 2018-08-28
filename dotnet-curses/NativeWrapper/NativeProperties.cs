@@ -9,8 +9,8 @@ namespace Mindmagma.Curses.Interop
     internal static partial class Native
     {
 
-        internal static int COLS => GetInt("COLS");
+        internal static int COLS => MarshalInt("COLS");
 
-        internal static int LINES => GetInt("LINES");
+        internal static int LINES => MarshalInt("LINES");
     }
 }
