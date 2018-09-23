@@ -1,0 +1,27 @@
+version: '{build}'
+skip_tags: true
+image: Visual Studio 2017
+configuration: Release
+build_script:
+- ps: ./build_appveyor.ps1
+test: off
+artifacts:
+- path: artifacts/dotnet-curses*.nupkg
+only_commits:
+  files:
+    - dotnet-curses.sln
+    - dotnet-curses/
+deploy:
+- provider: NuGet
+  api_key:
+    secure: m+/Qa/R0Z/kyTzdYapp++w7AW3sTMbmsz/4cHV9H4kPApgb8O1HjMfdiGLnBBHDv
+  skip_symbols: true
+  on:
+    branch: /^(master|dev)$/
+- provider: GitHub
+  auth_token:
+    secure: +EUQOpgfGayDA+QMrOqaI9wi2mUYdI3RrTU2hJNTMAIfBm/HAIQkCPxIGx+8nDeA
+  artifact: /dotnet-curses*\.nupkg/
+  tag: v$(appveyor_build_version)
+  on:
+    branch: master
