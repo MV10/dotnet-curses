@@ -7,9 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotnet-curses", "dotnet-cur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sample-fireworks", "sample-fireworks\sample-fireworks.csproj", "{0D898BD9-91CF-45C9-ACE7-B42F062094F4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NativeLibraryLoader", "NativeLibraryLoader\NativeLibraryLoader.csproj", "{F15EF57E-BA2D-4F71-9ED1-04284D36A75C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sample-mouse", "sample-mouse\sample-mouse.csproj", "{8B237AEF-6B72-4223-9A9B-0A9F54A17AFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "sample-mouse", "sample-mouse\sample-mouse.csproj", "{8B237AEF-6B72-4223-9A9B-0A9F54A17AFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +23,6 @@ Global
 		{0D898BD9-91CF-45C9-ACE7-B42F062094F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D898BD9-91CF-45C9-ACE7-B42F062094F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D898BD9-91CF-45C9-ACE7-B42F062094F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F15EF57E-BA2D-4F71-9ED1-04284D36A75C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F15EF57E-BA2D-4F71-9ED1-04284D36A75C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F15EF57E-BA2D-4F71-9ED1-04284D36A75C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F15EF57E-BA2D-4F71-9ED1-04284D36A75C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8B237AEF-6B72-4223-9A9B-0A9F54A17AFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8B237AEF-6B72-4223-9A9B-0A9F54A17AFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B237AEF-6B72-4223-9A9B-0A9F54A17AFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
