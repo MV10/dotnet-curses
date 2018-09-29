@@ -1,13 +1,6 @@
 # dotnet-curses [![NuGet](https://img.shields.io/nuget/v/dotnet-curses.svg)](https://nuget.org/packages/dotnet-curses)
 This is an easy-to-use, fully cross-platform .NET Standard 2.0 wrapper for the Unix NCurses terminal library. The project is able to load the OS-specific native implementation of NCurses at runtime which means you can deploy the same binary to Windows, Linux, or OSX. Most other .NET wrappers use statically-defined references to the native implementation, requiring different builds for different OSes.
 
-## Status / TODO
-The library itself is tested and fully functional. Remaining tasks:
-
-- Set up Travis CI to validate pull requests
-- Additional sample programs
-- Wrap more of the ncurses API
-
 ## Usage
 This library assumes your application will be compiled as a portable executable. That results in a DLL that can run on Windows, Linux, or OSX, and this library works the same way. At runtime it detects the OS and loads the native OS version of the curses library. Later sections explain how to get the correct .NET runtime on Linux or OSX, where to find an ncurses implementation for Windows, and what to do if ncurses on your OS uses a non-standard library name (generally only a problem on Linux).
 
