@@ -17,7 +17,7 @@ deploy:
     secure: UDW8eHW8VDRzr9YolMr6Cs2h6BaieEJvQASj/2xU1x+hG0LLZ8I6d2k0pQRl3oVi
   skip_symbols: true
   on:
-    branch: /^(master|dev)$/
+    branch: master
 - provider: GitHub
   auth_token:
     secure: +EUQOpgfGayDA+QMrOqaI9wi2mUYdI3RrTU2hJNTMAIfBm/HAIQkCPxIGx+8nDeA
