@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Mindmagma.Curses</RootNamespace>
     <Description>Portable cross-platform .NET Standard wrapper for the Unix ncurses library</Description>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>1.0.1</VersionPrefix>
     <Authors>Jon McGuire</Authors>
     <PackageId>dotnet-curses</PackageId>
     <PackageTags>curses;ncurses</PackageTags>
