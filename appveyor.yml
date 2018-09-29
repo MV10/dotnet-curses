@@ -21,7 +21,7 @@ deploy:
 - provider: GitHub
   auth_token:
     secure: +EUQOpgfGayDA+QMrOqaI9wi2mUYdI3RrTU2hJNTMAIfBm/HAIQkCPxIGx+8nDeA
-  artifact: artifacts/dotnet-curses*\.nupkg/
+  artifact: artifacts/dotnet-curses*.nupkg/
   tag: v$(appveyor_build_version)
   on:
     branch: master
