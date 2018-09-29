@@ -9,13 +9,13 @@ The library itself is tested and fully functional. Remaining tasks:
 - Wrap more of the ncurses API
 
 ## Usage
-NuGet packaging is on the way, but for now, I recommend forking this project to your own repo, clonining it locally, then changing the csproj to generate a local NuGet package that you can reference from your own application. This way any dependencies will be automatically resolved by NuGet.
-
-As explained in the introductory paragraph, this library assumes your application will be compiled as a portable executable. That results in a DLL that can run on Windows, Linux, or OSX, and this library works the same way. At runtime it detects the OS and loads the native OS-specific version of the curses library. Later sections explain how to get the correct .NET runtime on Linux or OSX, how to find an ncurses implementation for Windows, and what to do if ncurses on your OS uses a non-standard library name (generally only a problem on Linux).
+This library assumes your application will be compiled as a portable executable. That results in a DLL that can run on Windows, Linux, or OSX, and this library works the same way. At runtime it detects the OS and loads the native OS version of the curses library. Later sections explain how to get the correct .NET runtime on Linux or OSX, where to find an ncurses implementation for Windows, and what to do if ncurses on your OS uses a non-standard library name (generally only a problem on Linux).
 
 In your own program, you're mainly calling static methods exposed by the `NCurses` class in the `Mindmagma.Curses` namespace. I recommend browsing the `NCurses` class in the Visual Studio object browser window to see exactly what is available (at the time of writing, 91 API calls are available).
 
-How to use the curses API itself is beyond the scope of this README. I recommend reading either [this](http://www.ibiblio.org/pub/Linux/docs/HOWTO/other-formats/html_single/NCURSES-Programming-HOWTO.html) high-level introduction or the much longer article by Eric S. Raymond [here](https://invisible-island.net/ncurses/ncurses-intro.html). However, a typical start-up sequence might look like this:
+Please restrict opening issues in this repo to topics specific to this project, not about curses in general. For assistance with the curses API itself, questions tagged `ncurses` on [StackOverflow](https://stackoverflow.com/questions/tagged/ncurses) seem to be answered pretty quickly. 
+
+How to use the curses API itself is beyond the scope of this README. I recommend reading either [this](http://www.ibiblio.org/pub/Linux/docs/HOWTO/other-formats/html_single/NCURSES-Programming-HOWTO.html) high-level introduction or the much longer article by Eric S. Raymond [here](https://invisible-island.net/ncurses/ncurses-intro.html). However, a typical start-up sequence using this package might look like this:
 
 ```csharp
 var Screen = NCurses.InitScreen();
@@ -56,4 +56,4 @@ Currently the names built into _dotnet-curses_ are as follows and should work fo
 - OSX: `libncurses.dylib`
 
 ## Native Library Loader
-This project includes a separate slightly-modified copy of Eric Mellinoe's [_NativeLibraryLoader_](https://github.com/mellinoe/nativelibraryloader/) project. The project is serving as a prototype for implementing improved native library support directly in a future version of .NET Core (probably 2.2).
+This project includes a separate slightly-modified copy of Eric Mellinoe's [_NativeLibraryLoader_](https://github.com/mellinoe/nativelibraryloader/) project. The project is serving as a prototype for implementing improved native library support directly in a future version of .NET Core (probably 2.2). It was actually incorporated into the _dotnet-curses_ codebase because the dotnet nuget packaging process currently isn't smart enough to combine two projects into a single package.
