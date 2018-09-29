@@ -5,6 +5,7 @@
     <RootNamespace>Mindmagma.Curses</RootNamespace>
     <Description>Portable cross-platform .NET Standard wrapper for the Unix ncurses library</Description>
     <Authors>Jon McGuire</Authors>
+    <PackageVersion>1.0.1</PackageVersion>
     <PackageId>dotnet-curses</PackageId>
     <PackageTags>curses;ncurses</PackageTags>
     <PackageLicenseUrl>https://github.com/MV10/dotnet-curses/blob/master/LICENSE</PackageLicenseUrl>
