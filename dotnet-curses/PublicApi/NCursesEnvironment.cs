@@ -85,17 +85,5 @@ namespace Mindmagma.Curses
             int result = Native.raw();
             NativeExceptionHelper.ThrowOnFailure(result, nameof(Raw));
         }
-
-        /// <summary>
-        /// Writes debug information to the "trace" file in the current directory.
-        /// WARNING - Some flags log multiple megabytes per second in rapid-read or rapid-update applications.
-        /// </summary>
-        /// <param name="flags"><see cref="CursesTrace"/ constants OR'd together (use the | operator)></param>
-        public static void Trace(uint flags)
-        {
-            // http://invisible-island.net/ncurses/man/curs_trace.3x.html
-            Native.trace(flags);
-        }
-
     }
 }
