@@ -34,7 +34,7 @@ namespace Mindmagma.Curses
         /// for OSPlatform.Linux. Override this to add to the defaults, or
         /// also override the Replace property to replace the defaults.
         /// </summary>
-        public virtual List<string> NamesLinux => new List<string> { "libncurses.so.5.9", "libncurses.so" };
+        public virtual List<string> NamesLinux => new List<string> { "libncurses.so", "libncurses.so.6", "libncurses.so.5.9" };
 
         /// <summary>
         /// Defaults to false, override this to set it to true which ignores
