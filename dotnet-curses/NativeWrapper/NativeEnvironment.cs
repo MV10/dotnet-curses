@@ -63,5 +63,15 @@ namespace Mindmagma.Curses.Interop
         private delegate int dt_raw();
         private static dt_raw call_raw = NativeToDelegate<dt_raw>("raw");
         internal static int raw() => call_raw();
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int dt_halfdelay(int tenths);
+        private static dt_halfdelay call_halfdelay = NativeToDelegate<dt_halfdelay>("halfdelay");
+        internal static int halfdelay(int tenths) => call_halfdelay(tenths);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int dt_timeout(int delay);
+        private static dt_timeout call_timeout = NativeToDelegate<dt_timeout>("timeout");
+        internal static int timeout(int delay) => call_timeout(delay);
     }
 }
