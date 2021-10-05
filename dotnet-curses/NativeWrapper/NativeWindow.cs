@@ -83,7 +83,7 @@ namespace Mindmagma.Curses.Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int dt_wtimeout(IntPtr window, int delay);
-        private static dt_wtimeout call_wtimeout = NativeToDelegate<dt_wtimeout("wtimeout");
+        private static dt_wtimeout call_wtimeout = NativeToDelegate<dt_wtimeout>("wtimeout");
         internal static int wtimeout(IntPtr window, int delay) => call_wtimeout(window, delay);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

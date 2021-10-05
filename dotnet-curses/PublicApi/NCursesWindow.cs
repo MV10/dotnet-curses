@@ -97,7 +97,7 @@ namespace Mindmagma.Curses
 
         public static void WindowTimeOut(IntPtr window, int delay)
         {
-            int result = Native.wtimout(window, delay);
+            int result = Native.wtimeout(window, delay);
             NativeExceptionHelper.ThrowOnFailure(result, nameof(WindowTimeOut));
         }
 
