@@ -153,6 +153,20 @@ namespace Mindmagma.Curses
             return result;
         }
 
+        public static int WindowAttributeOn(IntPtr window, uint attributes)
+        {
+            int result = Native.wattron(window, attributes);
+            NativeExceptionHelper.ThrowOnFailure(result, nameof(WindowAttributeOn));
+            return result;
+        }
+
+        public static int WindowAttributeOff(IntPtr window, uint attributes)
+        {
+            int result = Native.wattroff(window, attributes);
+            NativeExceptionHelper.ThrowOnFailure(result, nameof(WindowAttributeOff));
+            return result;
+        }
+
         public static void WindowBackground(IntPtr window, uint ch)
         {
             int result = Native.wbkgd(window, ch);
