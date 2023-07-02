@@ -148,8 +148,13 @@ namespace Mindmagma.Curses.Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int dt_wattroff(IntPtr window, uint attributes);
-        private static dt_wattron call_wattroff = NativeToDelegate<dt_wattron>("wattroff");
+        private static dt_wattroff call_wattroff = NativeToDelegate<dt_wattroff>("wattroff");
         internal static int wattroff(IntPtr window, uint attributes) => call_wattroff(window, attributes);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int dt_wattrset(IntPtr window, uint attributes);
+        private static dt_wattrset call_wattrset = NativeToDelegate<dt_wattrset>("wattrset");
+        internal static int wattrset(IntPtr window, uint attributes) => call_wattrset(window, attributes);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int dt_wbkgd(IntPtr window, uint ch);

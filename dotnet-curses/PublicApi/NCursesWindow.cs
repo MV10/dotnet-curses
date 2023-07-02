@@ -181,6 +181,13 @@ namespace Mindmagma.Curses
             return result;
         }
 
+        public static int WindowAttributeSet(IntPtr window, uint attributes)
+        {
+            int result = Native.wattrset(window, attributes);
+            NativeExceptionHelper.ThrowOnFailure(result, nameof(WindowAttributeSet));
+            return result;
+		}
+
         public static void WindowBackground(IntPtr window, uint ch)
         {
             int result = Native.wbkgd(window, ch);
