@@ -82,6 +82,12 @@ namespace Mindmagma.Curses
             NativeExceptionHelper.ThrowOnFailure(result, nameof(MoveWindow));
         }
 
+        public static void MoveWindowGetChar(IntPtr window, int y, int x)
+        {
+            int result = Native.mvwgetch(window, y, x);
+            NativeExceptionHelper.ThrowOnFailure(result, nameof(MoveWindowGetChar));
+		}
+
         public static IntPtr NewWindow(int rows, int columns, int yOrigin, int xOrigin)
         {
             IntPtr result = Native.newwin(rows, columns, yOrigin, xOrigin);

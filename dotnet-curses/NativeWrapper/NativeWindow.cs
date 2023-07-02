@@ -72,6 +72,11 @@ namespace Mindmagma.Curses.Interop
         internal static int mvwin(IntPtr window, int row, int column) => call_mvwin(window, row, column);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int dt_mvwgetch(IntPtr window, int y, int x);
+        private static dt_mvwgetch call_mvwgetch = NativeToDelegate<dt_mvwgetch>("mvwgetch");
+        internal static int mvwgetch(IntPtr window, int y, int x) => call_mvwgetch(window, y, x);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate IntPtr dt_newwin(int rows, int columns, int yOrigin, int xOrigin);
         private static dt_newwin call_newwin = NativeToDelegate<dt_newwin>("newwin");
         internal static IntPtr newwin(int rows, int columns, int yOrigin, int xOrigin) => call_newwin(rows, columns, yOrigin, xOrigin);
