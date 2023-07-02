@@ -186,6 +186,12 @@ namespace Mindmagma.Curses
             return result;
         }
 
+        public static void WindowMove(IntPtr window, int row, int column)
+        {
+            int result = Native.wmove(window, row, column);
+            NativeExceptionHelper.ThrowOnFailure(result, nameof(WindowMove));
+        }
+
         public static int WindowRefresh(IntPtr window)
         {
             int result = Native.wrefresh(window);

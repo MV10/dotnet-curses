@@ -163,6 +163,11 @@ namespace Mindmagma.Curses.Interop
         internal static int wgetch(IntPtr win) => call_wgetch(win);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int dt_wmove(IntPtr window, int row, int column);
+        private static dt_wmove call_wmove = NativeToDelegate<dt_wmove>("wmove");
+        internal static int wmove(IntPtr window, int row, int column) => call_wmove(window, row, column);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int dt_wrefresh(IntPtr win);
         private static dt_wrefresh call_wrefresh = NativeToDelegate<dt_wrefresh>("wrefresh");
         internal static int wrefresh(IntPtr win) => call_wrefresh(win);
