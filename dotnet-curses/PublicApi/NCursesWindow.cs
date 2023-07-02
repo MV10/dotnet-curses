@@ -74,7 +74,7 @@ namespace Mindmagma.Curses
             int result = Native.mvwaddch(window, y, x, c);
             NativeExceptionHelper.ThrowOnFailure(result, nameof(MoveWindowAddChar));
             return result;
-		}
+        }
 
         public static int MoveWindowAddString(IntPtr window, int y, int x, string message)
         {
@@ -94,7 +94,7 @@ namespace Mindmagma.Curses
             int result = Native.mvwgetch(window, y, x);
             NativeExceptionHelper.ThrowOnFailure(result, nameof(MoveWindowGetChar));
             return result;
-		}
+        }
 
         public static IntPtr NewWindow(int rows, int columns, int yOrigin, int xOrigin)
         {
@@ -186,7 +186,7 @@ namespace Mindmagma.Curses
             int result = Native.wattrset(window, attributes);
             NativeExceptionHelper.ThrowOnFailure(result, nameof(WindowAttributeSet));
             return result;
-		}
+        }
 
         public static void WindowBackground(IntPtr window, uint ch)
         {
