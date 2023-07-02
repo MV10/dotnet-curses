@@ -18,6 +18,11 @@ namespace Mindmagma.Curses
             if (result == -1) throw new DotnetCursesException($"{method}() returned ERR");
         }
 
+        internal static void ThrowOnFailure(uint result, string method)
+        {
+            if (result == uint.MaxValue) throw new DotnetCursesException($"{method}() returned ERR");
+        }
+
         internal static void ThrowOnFailure(IntPtr result, string method)
         {
             if (result == IntPtr.Zero) throw new DotnetCursesException($"{method}() returned NULL");
