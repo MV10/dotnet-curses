@@ -200,10 +200,11 @@ namespace Mindmagma.Curses
             return result;
         }
 
-        public static void WindowMove(IntPtr window, int row, int column)
+        public static int WindowMove(IntPtr window, int row, int column)
         {
             int result = Native.wmove(window, row, column);
             NativeExceptionHelper.ThrowOnFailure(result, nameof(WindowMove));
+            return result;
         }
 
         public static int WindowRefresh(IntPtr window)
