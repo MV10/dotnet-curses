@@ -62,6 +62,11 @@ namespace Mindmagma.Curses.Interop
         internal static int keypad(IntPtr window, bool enable) => call_keypad(window, enable);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int dt_mvwaddch(IntPtr window, int y, int x, char c);
+        private static dt_mvwaddch call_mvwaddch = NativeToDelegate<dt_mvwaddch>("mvwaddch");
+        internal static int mvwaddch(IntPtr window, int y, int x, char c) => call_mvwaddch(window, y, x, c);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int dt_mvwaddstr(IntPtr window, int y, int x, string message);
         private static dt_mvwaddstr call_mvwaddstr = NativeToDelegate<dt_mvwaddstr>("mvwaddstr");
         internal static int mvwaddstr(IntPtr window, int y, int x, string message) => call_mvwaddstr(window, y, x, message);

@@ -69,6 +69,13 @@ namespace Mindmagma.Curses
             NativeExceptionHelper.ThrowOnFailure(result, nameof(Keypad));
         }
 
+        public static int MoveWindowAddChar(IntPtr window, int y, int x, char c)
+        {
+            int result = Native.mvwaddch(window, y, x, c);
+            NativeExceptionHelper.ThrowOnFailure(result, nameof(MoveWindowAddChar));
+            return result;
+		}
+
         public static int MoveWindowAddString(IntPtr window, int y, int x, string message)
         {
             int result = Native.mvwaddstr(window, y, x, message);
