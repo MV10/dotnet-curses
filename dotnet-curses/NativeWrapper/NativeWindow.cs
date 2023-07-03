@@ -183,6 +183,11 @@ namespace Mindmagma.Curses.Interop
         internal static int wgetch(IntPtr win) => call_wgetch(win);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate uint dt_winch(IntPtr window);
+        private static dt_winch call_winch = NativeToDelegate<dt_winch>("winch");
+        internal static uint winch(IntPtr window) => call_winch(window);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int dt_wmove(IntPtr window, int row, int column);
         private static dt_wmove call_wmove = NativeToDelegate<dt_wmove>("wmove");
         internal static int wmove(IntPtr window, int row, int column) => call_wmove(window, row, column);

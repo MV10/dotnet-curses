@@ -214,6 +214,13 @@ namespace Mindmagma.Curses
             return result;
         }
 
+        public static uint WindowInspectChar(IntPtr window)
+        {
+            uint result = Native.winch(window);
+            NativeExceptionHelper.ThrowOnFailure(result, nameof(WindowInspectChar));
+            return result;
+        }
+
         public static int WindowMove(IntPtr window, int row, int column)
         {
             int result = Native.wmove(window, row, column);
