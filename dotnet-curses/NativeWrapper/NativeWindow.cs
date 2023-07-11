@@ -62,6 +62,11 @@ namespace Mindmagma.Curses.Interop
         internal static int keypad(IntPtr window, bool enable) => call_keypad(window, enable);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int dt_mvwaddch(IntPtr window, int y, int x, char c);
+        private static dt_mvwaddch call_mvwaddch = NativeToDelegate<dt_mvwaddch>("mvwaddch");
+        internal static int mvwaddch(IntPtr window, int y, int x, char c) => call_mvwaddch(window, y, x, c);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int dt_mvwaddstr(IntPtr window, int y, int x, string message);
         private static dt_mvwaddstr call_mvwaddstr = NativeToDelegate<dt_mvwaddstr>("mvwaddstr");
         internal static int mvwaddstr(IntPtr window, int y, int x, string message) => call_mvwaddstr(window, y, x, message);
@@ -70,6 +75,16 @@ namespace Mindmagma.Curses.Interop
         private delegate int dt_mvwin(IntPtr window, int row, int column);
         private static dt_mvwin call_mvwin = NativeToDelegate<dt_mvwin>("mvwin");
         internal static int mvwin(IntPtr window, int row, int column) => call_mvwin(window, row, column);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int dt_mvwgetch(IntPtr window, int y, int x);
+        private static dt_mvwgetch call_mvwgetch = NativeToDelegate<dt_mvwgetch>("mvwgetch");
+        internal static int mvwgetch(IntPtr window, int y, int x) => call_mvwgetch(window, y, x);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate uint dt_mvwinch(IntPtr window, int y, int x);
+        private static dt_mvwinch call_mvwinch = NativeToDelegate<dt_mvwinch>("mvwinch");
+        internal static uint mvwinch(IntPtr window, int y, int x) => call_mvwinch(window, y, x);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate IntPtr dt_newwin(int rows, int columns, int yOrigin, int xOrigin);
@@ -137,6 +152,21 @@ namespace Mindmagma.Curses.Interop
         internal static int waddnstr(IntPtr win, String str, int n) => call_waddnstr(win, str, n);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int dt_wattron(IntPtr window, uint attributes);
+        private static dt_wattron call_wattron = NativeToDelegate<dt_wattron>("wattron");
+        internal static int wattron(IntPtr window, uint attributes) => call_wattron(window, attributes);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int dt_wattroff(IntPtr window, uint attributes);
+        private static dt_wattroff call_wattroff = NativeToDelegate<dt_wattroff>("wattroff");
+        internal static int wattroff(IntPtr window, uint attributes) => call_wattroff(window, attributes);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int dt_wattrset(IntPtr window, uint attributes);
+        private static dt_wattrset call_wattrset = NativeToDelegate<dt_wattrset>("wattrset");
+        internal static int wattrset(IntPtr window, uint attributes) => call_wattrset(window, attributes);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int dt_wbkgd(IntPtr window, uint ch);
         private static dt_wbkgd call_wbkgd = NativeToDelegate<dt_wbkgd>("wbkgd");
         internal static int wbkgd(IntPtr window, uint ch) => call_wbkgd(window, ch);
@@ -156,6 +186,16 @@ namespace Mindmagma.Curses.Interop
         private delegate int dt_wgetch(IntPtr win);
         private static dt_wgetch call_wgetch = NativeToDelegate<dt_wgetch>("wgetch");
         internal static int wgetch(IntPtr win) => call_wgetch(win);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate uint dt_winch(IntPtr window);
+        private static dt_winch call_winch = NativeToDelegate<dt_winch>("winch");
+        internal static uint winch(IntPtr window) => call_winch(window);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int dt_wmove(IntPtr window, int row, int column);
+        private static dt_wmove call_wmove = NativeToDelegate<dt_wmove>("wmove");
+        internal static int wmove(IntPtr window, int row, int column) => call_wmove(window, row, column);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int dt_wrefresh(IntPtr win);
