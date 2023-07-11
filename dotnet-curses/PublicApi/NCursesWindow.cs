@@ -95,6 +95,12 @@ namespace Mindmagma.Curses
             NativeExceptionHelper.ThrowOnFailure(result, nameof(NoDelay));
         }
 
+        public static void WindowTimeOut(IntPtr window, int delay)
+        {
+            int result = Native.wtimeout(window, delay);
+            NativeExceptionHelper.ThrowOnFailure(result, nameof(WindowTimeOut));
+        }
+
         public static void Overlay(IntPtr sourceWindow, IntPtr destinationWindow)
         {
             int result = Native.overlay(sourceWindow, destinationWindow);

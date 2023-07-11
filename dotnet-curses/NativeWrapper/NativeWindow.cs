@@ -82,6 +82,11 @@ namespace Mindmagma.Curses.Interop
         internal static int nodelay(IntPtr window, bool removeDelay) => call_nodelay(window, removeDelay);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate int dt_wtimeout(IntPtr window, int delay);
+        private static dt_wtimeout call_wtimeout = NativeToDelegate<dt_wtimeout>("wtimeout");
+        internal static int wtimeout(IntPtr window, int delay) => call_wtimeout(window, delay);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate int dt_overlay(IntPtr sourceWindow, IntPtr destinationWindow);
         private static dt_overlay call_overlay = NativeToDelegate<dt_overlay>("overlay");
         internal static int overlay(IntPtr sourceWindow, IntPtr destinationWindow) => call_overlay(sourceWindow, destinationWindow);
