@@ -1,7 +1,7 @@
 # dotnet-curses [![NuGet](https://img.shields.io/nuget/v/dotnet-curses.svg)](https://nuget.org/packages/dotnet-curses)
 This is an easy-to-use, fully cross-platform .NET Standard 2.0 wrapper for the Unix NCurses terminal library. The project is able to load the OS-specific native implementation of NCurses at runtime which means you can deploy the same binary to Windows, Linux, or OSX. Most other .NET wrappers use statically-defined references to the native implementation, requiring different builds for different OSes.
 
-> "Wrapper" means this package DOES NOT include the curses library itself. See _The Native Library_ section below for details.
+> "Wrapper" means this package DOES NOT include the curses library itself. See _The Native Curses Library_ section below for details.
 
 ## Usage
 This library assumes your application will be compiled as a portable executable. That results in a DLL that can run on Windows, Linux, or OSX, and this library works the same way. At runtime it detects the OS and loads the native OS version of the curses library. Later sections explain how to get the correct .NET runtime on Linux or OSX, where to find an ncurses implementation for Windows, and what to do if ncurses on your OS uses a non-standard library name (generally only a problem on Linux).
@@ -23,12 +23,12 @@ The target OS doesn't need to install the developer-oriented .NET SDK. Instead, 
 
 As usual, Linux makes it complicated. Your best bet is to read the documentation about preprequisites [here](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x) and follow the instructions that match your distro. Because distros can vary considerably even between minor releases, you should try to match your _exact_ distro and version for the best chances of success.
 
-## The Native Library
+## The Native Curses Library
 OSX always installs ncurses. Linux distros _almost_ always do (if yours does not, unfortunately I probably can't help you).
 
 For Windows, download it from Thomas Dickey’s site (the current ncurses maintainer) from the 64-bit link under the "MinGW Ports" heading on [this page](https://invisible-island.net/ncurses/#download_mingw), and extract the DLLs anywhere in your `%PATH%`.
 
-## Non-Standard Library Filenames
+## Non-Standard Curses Library Filenames
 Various platforms, releases and distributions have used different filenames for the curses library. On OSX it usually includes the major version number, and on Linux it's common to include the major and minor version numbers. Windows has never included a cursors implementation, although Thomas Dickey's builds are the de facto standard.
 
 The _dotnet-curses_ library contains a list of defaults for each platform that are very likely to work. However, if you want to add to these or even replace one or more lists entirely, simply add a class to your project that derives from `CursesLibraryNames` and use one or more of the following:
