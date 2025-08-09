@@ -4,7 +4,7 @@ image: Visual Studio 2017
 configuration: Release
 build_script:
 - ps: ./build_appveyor.ps1
-test: off
+test: false
 artifacts:
 - path: artifacts/dotnet-curses*.nupkg
 only_commits:
