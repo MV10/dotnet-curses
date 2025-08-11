@@ -1,5 +1,5 @@
 # dotnet-curses [![NuGet](https://img.shields.io/nuget/v/dotnet-curses.svg)](https://nuget.org/packages/dotnet-curses)
-This is an easy-to-use, fully cross-platform .NET Standard 2.0 wrapper for the Unix NCurses terminal library. The project is able to load the OS-specific native implementation of NCurses at runtime which means you can deploy the same binary to Windows, Linux, or OSX. Most other .NET wrappers use statically-defined references to the native implementation, requiring different builds for different OSes.
+This is an easy-to-use, fully cross-platform .NET wrapper for the Unix NCurses terminal library. The project is able to load the OS-specific native implementation of NCurses at runtime which means you can deploy the same binary to Windows, Linux, or OSX. Most other .NET wrappers use statically-defined references to the native implementation, requiring different builds for different OSes.
 
 > "Wrapper" means this package DOES NOT include the curses library itself. See _The Native Curses Library_ section below for details.
 
@@ -17,12 +17,6 @@ var Screen = NCurses.InitScreen();
 NCurses.NoDelay(Screen, true);
 NCurses.NoEcho();
 ```
-
-## The .NET Runtime
-The target OS doesn't need to install the developer-oriented .NET SDK. Instead, a much smaller, machine-wide .NET runtime can be installed. For Windows, there is a simple installer [here](https://www.microsoft.com/net/download?initial-os=windows). The same is true of OSX, download an installer [here](https://www.microsoft.com/net/download?initial-os=macos).
-
-As usual, Linux makes it complicated. Your best bet is to read the documentation about preprequisites [here](https://docs.microsoft.com/en-us/dotnet/core/linux-prerequisites?tabs=netcore2x) and follow the instructions that match your distro. Because distros can vary considerably even between minor releases, you should try to match your _exact_ distro and version for the best chances of success.
-
 ## The Native Curses Library
 OSX always installs ncurses. Linux distros _almost_ always do (if yours does not, unfortunately I probably can't help you).
 
@@ -31,7 +25,13 @@ For Windows, download it from Thomas Dickey’s site (the current ncurses mainta
 ## Non-Standard Curses Library Filenames
 Various platforms, releases and distributions have used different filenames for the curses library. On OSX it usually includes the major version number, and on Linux it's common to include the major and minor version numbers. Windows has never included a cursors implementation, although Thomas Dickey's builds are the de facto standard.
 
-The _dotnet-curses_ library contains a list of defaults for each platform that are very likely to work. However, if you want to add to these or even replace one or more lists entirely, simply add a class to your project that derives from `CursesLibraryNames` and use one or more of the following:
+Currently the names built into _dotnet-curses_ are as follows and should work for most target environments:
+
+- Windows: `libncursesw6.dll`
+- Linux: `libncurses.so.5.9`, `libncurses.so`
+- OSX: `libncurses.dylib`
+
+The _dotnet-curses_ library contains that list as defaults. However, if you want to add to these or even replace the lists entirely, simply create a class in your project that derives from `CursesLibraryNames` and use any of the following:
 
 ```csharp
 public override bool ReplaceWindowsDefaults => true;
@@ -42,13 +42,14 @@ public override List<string> NamesLinux => new List<string> { "abc.1.5.so", "abc
 public override List<string> NamesOSX => new List<string> { "xyz5.dylib", "xyz.dylib" };
 ```
 
-The "Replace" properties are false by default. If you leave it at the default but override the corresponding name list, those names will be **added** to the _dotnet-curses_ default list. However, if you override and set a "Replace" property to true, the built-in defaults will be ignored, and only the names you provide will be used.
-
-Currently the names built into _dotnet-curses_ are as follows and should work for most target environments:
-
-- Windows: `libncursesw6.dll`
-- Linux: `libncurses.so.5.9`, `libncurses.so`
-- OSX: `libncurses.dylib`
+The "Replace" properties in the first three are false by default. If you leave it at the default but override the corresponding name list, those names will be _added_ to the _dotnet-curses_ default list. However, if you override a list and set the "Replace" property to true, the built-in defaults will be ignored, and _only_ the names you provide will be used.
 
 ## Native Library Loader
-This project includes a separate slightly-modified copy of Eric Mellinoe's [_NativeLibraryLoader_](https://github.com/mellinoe/nativelibraryloader/) project. The project is serving as a prototype for implementing improved native library support directly in a future version of .NET Core (probably 2.2). It was actually incorporated into the _dotnet-curses_ codebase because the dotnet nuget packaging process currently isn't smart enough to combine two projects into a single package.
+This project includes a separate slightly-modified copy of Eric Mellinoe's [_NativeLibraryLoader_](https://github.com/mellinoe/nativelibraryloader/) project. The project was a prototype for implementing improved native library support directly in a future version of .NET. Eventually, a variation made it into .NET Core 3.0, however I am not currently equipped to perform cross-platform testing (OSX is no longer so easy to run in a VM and I will never own an Apple product, and I haven't had a need to maintain a Linux environment for a couple years). Eric's code was incorporated into the _dotnet-curses_ codebase because the dotnet nuget packaging process can't combine two separate projects into a single package. Eventually I will release a new version that uses Microsoft's `System.Runtime.InteropServices.NativeLibrary` implementation (and I'd happy accept a PR if someone feels like doing that work and validating the results).
+
+Note version 1 of _dotnet-curses_ targeted .NET Standard, which meant it could be used with modern .NET or .NET Framework. However, the library also used Microsoft extensions with .NET Core 2.1 dependencies, which is out of support and has known vulnerabilities. Unfortunately, as of .NET 8 Microsoft introduced a [breaking change](https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/8.0/runtimeidentifier) in Runtime Identifier determination, which is used by the Native Library Loader code. The new property is not available for .NET Framework or .NET Standard.
+
+## The .NET Runtime
+The README for earlier releases of this library had links and specific instructions about setting up machine-wide .NET runtime installations under Windows, Linux, or OSX. Those links have changed, but Microsoft has actually made of all of this easier and you shouldn't have any trouble finding the current documentation yourself. (They kept changing the links, so I'm not going to try to keep track of it.)
+
+

@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 
+// Necessary because .NET Core 3.0 introduced System.Runtime.InteropServices.NativeLibrary
+// TODO: Migrate away from this internal NativeLibrary impelmentation.
+using NativeLibrary = NativeLibraryLoader.NativeLibrary;
+
 // The library handle is retrieved here instead of in Native because
 // a constructor in Native would not run until the static fields are
 // initialized, and the static fields reference the library handle,
