@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>Mindmagma.Curses</RootNamespace>
     <Description>Portable cross-platform .NET Standard wrapper for the Unix ncurses library</Description>
     <Authors>Jon McGuire</Authors>
-    <PackageVersion>1.0.4</PackageVersion>
+    <PackageVersion>2.0.0</PackageVersion>
     <PackageId>dotnet-curses</PackageId>
     <PackageTags>curses;ncurses</PackageTags>
     <PackageLicenseUrl>https://github.com/MV10/dotnet-curses/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/MV10/dotnet-curses/</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/MV10/dotnet-curses/</RepositoryUrl>
-    <Version>1.0.4</Version>
+    <Version>2.0.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 

@@ -58,11 +58,12 @@ namespace NativeLibraryLoader
                 return false;
             }
 
-            // 2025-08-09 .NET Core 2.1 has vulnerabilities and .NET 8 changes the behavior of RIDs
+            // 2025-08-09 v2.0.0 .NET Core 2.1 has vulnerabilities, but .NET 8 changes the behavior of RIDs. The new
+            // property is unavailable to .NET Framework or .NET Standard, so now the library supports modern .NET only.
             // https://learn.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/8.0/runtimeidentifier
-            // https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.runtimeinformation.runtimeidentifier?view=net-8.0#remarks
-            // https://github.com/mellinoe/nativelibraryloader/issues/21
-            // Currently using a work-around to retain the old behavior; see dotnet-curses.csproj <UseRidGraph> setting
+            // Currently using the csproj <UseRidGraph> setting to retain backwards-compatible RIDs described at the
+            // end of the Recommended Actions topic in this article:
+            // https://learn.microsoft.com/en-us/dotnet/core/compatibility/deployment/8.0/rid-asset-list#recommended-action
 
             //string currentRID = Microsoft.DotNet.PlatformAbstractions.RuntimeEnvironment.GetRuntimeIdentifier();
             string currentRID = RuntimeInformation.RuntimeIdentifier;
